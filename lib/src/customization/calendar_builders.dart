@@ -24,6 +24,10 @@ typedef SingleMarkerBuilder = Widget Function(
 
 /// Class containing all custom Builders for `TableCalendar`.
 class CalendarBuilders {
+
+  /// 头部自定义
+  final FullBuilder headerBuilder;
+
   /// The most general custom Builder. Use to provide your own UI for every day cell.
   /// If `dayBuilder` is not specified, a default day cell will be displayed.
   /// Default day cells are customizable with `CalendarStyle`.
@@ -80,6 +84,7 @@ class CalendarBuilders {
   final DowBuilder dowWeekendBuilder;
 
   const CalendarBuilders({
+    this.headerBuilder,
     this.dayBuilder,
     this.selectedDayBuilder,
     this.todayDayBuilder,

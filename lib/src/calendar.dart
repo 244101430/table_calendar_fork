@@ -383,6 +383,14 @@ class _TableCalendarState extends State<TableCalendar>
   }
 
   Widget _buildHeader() {
+    /// 自定义头部组件
+    if (widget.builders.headerBuilder != null) {
+      final eventKey = _getEventKey(widget.calendarController.focusedDay);
+      return widget.builders.headerBuilder(
+          context, widget.calendarController.focusedDay,
+          widget.calendarController.visibleEvents[eventKey]);
+    }
+
     final children = [
       widget.headerStyle.leftChevronVisible
           ? _CustomIconButton(
