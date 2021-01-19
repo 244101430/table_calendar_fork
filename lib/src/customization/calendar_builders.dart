@@ -44,6 +44,9 @@ class CalendarBuilders {
   /// Custom Builder for days outside of current month. Will overwrite `dayBuilder` on days outside of current month.
   final FullBuilder outsideDayBuilder;
 
+  /// 当月以为外日期默认样式，覆盖dayBuilder
+  final FullBuilder outsideDayNormalBuilder;
+
   /// Custom Builder for weekends outside of current month. Will overwrite `dayBuilder`on weekends outside of current month.
   final FullBuilder outsideWeekendDayBuilder;
 
@@ -83,6 +86,7 @@ class CalendarBuilders {
     this.holidayDayBuilder,
     this.weekendDayBuilder,
     this.outsideDayBuilder,
+    this.outsideDayNormalBuilder,
     this.outsideWeekendDayBuilder,
     this.outsideHolidayDayBuilder,
     this.unavailableDayBuilder,

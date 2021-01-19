@@ -622,17 +622,23 @@ class _TableCalendarState extends State<TableCalendar>
   }
 
   Widget _buildCell(DateTime date) {
-    if (!widget.calendarStyle.outsideDaysVisible &&
-        widget.calendarController._isExtraDay(date) &&
-        widget.calendarController.calendarFormat == CalendarFormat.month) {
-      return Container();
-    }
-
     Widget content = _buildCellContent(date);
 
     final eventKey = _getEventKey(date);
     final holidayKey = _getHolidayKey(date);
     final key = eventKey ?? holidayKey;
+
+    if (!widget.calendarStyle.outsideDaysVisible &&
+        widget.calendarController._isExtraDay(date) &&
+        widget.calendarController.calendarFormat == CalendarFormat.month) {
+
+      /// 当月以为外日期默认样式，覆盖dayBuilder
+      if (widget.builders.outsideDayNormalBuilder != null) {
+        return widget.builders.outsideDayNormalBuilder(
+            context, date, widget.calendarController.visibleEvents[eventKey]);
+      }
+      return Container();
+    }
 
     if (key != null) {
       final children = <Widget>[content];
